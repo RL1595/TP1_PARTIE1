@@ -9,47 +9,66 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+#define PILE 3
+#define FACE 7
+#define NB_ESSAIS 3
 
 //Prototypes
 int valeur_aleatoire(int min, int max);
-void afficher_resultats(int resultat);
+int generer_suite(int mn, int mx);
+void afficher_resultats(int suite);
 
 //Programme principal
 int main(void){
     
     //Déclaration des variables
-    int minimum = 3;
-    int maximum = 7;
+    int minimum = 0;
+    int maximum = 1;
+    int suite;
     
-    int resultat = valeur_aleatoire(minimum, maximum);
-    afficher_resultats(resultat);
+    srand(time(NULL));
+    
+    suite = generer_suite(minimum, maximum);
+    afficher_resultats(suite);
     
     return EXIT_SUCCESS;
 }
 
 int valeur_aleatoire(int min, int max){
     
-    //Déclaration des variables du sous-programme
-    int resultat;
+    //Déclaration des variables du sous-programme valeur_aleatoire
+    int valeur_alea;
     
-    do{
-        srand(time(NULL));
-        resultat = (rand() % (max + 1 - min)) + min;
+    valeur_alea = (rand() % (max + 1 - min)) + min;
+    
+    if (valeur_alea == 0){
+        valeur_alea = PILE;
     }
-    while(resultat != 3 || resultat != 7);
-        
-    scanf("%d", &resultat);
-    
-        return resultat;
+    else{
+        valeur_alea = FACE;
+    }
+    return valeur_alea;
 }
 
-void afficher_resultats(int resultat){
+int generer_suite(mn, mx){
     
-    if(resultat == 3){
-        printf("pile");
+    //Déclaration des variables du sous-programme generer_suite
+    int suite = 0;
+    
+    for(int i = 0; i < 3; i++){
+        suite *= 10;
+        suite += valeur_aleatoire(mn, mx);
     }
-    else if(resultat == 7){
-        printf("face");
-    }
+    
+    return suite;
+    
 }
+
+void afficher_resultats(int suite){
+    
+    printf("%d\n", suite);
+    
+}
+
+
 
