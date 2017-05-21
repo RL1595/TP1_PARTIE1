@@ -12,15 +12,16 @@
 
 //Prototypes
 int valeur_aleatoire(int min, int max);
+void afficher_resultats(int resultat);
 
 //Programme principal
 int main(void){
     
     //Déclaration des variables
-    minimum = 3;
-    maximum = 7;
+    int minimum = 3;
+    int maximum = 7;
     
-    resultat = valeur_aleatoire(minimum, maximum);
+    int resultat = valeur_aleatoire(minimum, maximum);
     afficher_resultats(resultat);
     
     return EXIT_SUCCESS;
@@ -35,14 +36,14 @@ int valeur_aleatoire(int min, int max){
         srand(time(NULL));
         resultat = (rand() % (max + 1 - min)) + min;
     }
-    while(resultat != 3 || resultat != 7)
+    while(resultat != 3 || resultat != 7);
         
-        scanf("%d", &resultat)
-        
+    scanf("%d", &resultat);
+    
         return resultat;
 }
 
-void afficher_resultats(resultat){
+void afficher_resultats(int resultat){
     
     if(resultat == 3){
         printf("pile");
